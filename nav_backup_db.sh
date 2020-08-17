@@ -11,6 +11,6 @@ tar -cvf /backup_nav/$dt-navdata_full.tar /tmp/$dt-navdata_full.sql
 rm -rf /tmp/$dt-navdata_base.sql
 rm -rf /tmp/$dt-navdata_full.sql 
 cd /backup_nav
-smbclient -U s-nav@ihb.local%password //10.100.0.10/nav -c 'put "'$dt'-navdata_base.tar"'
-smbclient -U s-nav@ihb.local%password //10.100.0.10/nav -c 'put "'$dt'-navdata_full.tar"'
+smbclient -U user@domain%password //ip_hostname/nav -c 'put "'$dt'-navdata_base.tar"'
+smbclient -U user@domain%password //ip_hostname/nav -c 'put "'$dt'-navdata_full.tar"'
 
