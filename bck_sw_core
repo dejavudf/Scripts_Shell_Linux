@@ -1,0 +1,15 @@
+#!/bin/bash
+#Script de Backup das configuracoes dos switches CORE do IHB
+cd /backup_sw
+#dt=$(date '+%d%m%Y');
+dt=$(date '+%Y%m%d');
+echo Starting Backup...Wait...
+cat /backup_sw/ips_list_core.txt |  while read output
+do
+expect sw_backup_core $output > /backup_sw/core"_"$dt"_"$output.txt
+done
+tar -cvf sw_core"_"$dt.tar /backup_sw/core"_"$dt"_"*.txt
+rm -rf /backup_sw/core"_"$dt"_"*.txt
+mv -f /backup_sw/sw_core"_"$dt.tar /backup_sw/data
+ 
+

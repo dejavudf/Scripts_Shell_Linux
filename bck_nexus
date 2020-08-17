@@ -1,0 +1,10 @@
+#!/bin/bash
+#Script de Backup das configuracoes dos switches CORE e distribuicao CISCO NEXUS
+cd /backup_sw
+#dt=$(date '+%d%m%Y');
+dt=$(date '+%Y%m%d');
+tar -cvf sw_nexus_$dt.tar /tftp/backup_sw_cisco/*.cfg*
+rm -rf /tftp/backup_sw_cisco/*.cfg*
+mv -f /backup_sw/sw_nexus_$dt.tar /backup_sw/data
+ 
+
