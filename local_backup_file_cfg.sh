@@ -1,5 +1,5 @@
 #!/bin/bash
-#Script de Backup das configuracoes dos switches do IHB
+#Script de Backup das configuracoes arquivo local cfg
 cd /backup_fw
 #dt=$(date '+%d%m%Y');
 dt=$(date '+%Y%m%d');
