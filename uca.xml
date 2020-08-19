@@ -1,0 +1,158 @@
+<?xml encoding="UTF-8" version="1.0"?>
+<actions>
+<action>
+	<icon>utilities-terminal</icon>
+	<name>Open Terminal Here</name>
+	<unique-id>1548719241344358-1</unique-id>
+	<command>exo-open --working-directory %f --launch TerminalEmulator</command>
+	<description>Example for a custom action</description>
+	<patterns>*</patterns>
+	<startup-notify/>
+	<directories/>
+</action>
+<action>
+	<icon>catfish</icon>
+	<name>Search</name>
+	<unique-id>1550768511185465-2</unique-id>
+	<command>catfish %f</command>
+	<description>Search for files and folders</description>
+	<patterns>*</patterns>
+	<directories/>
+</action>
+<action>
+	<icon>accessories-text-editor</icon>
+	<name>Edit</name>
+	<unique-id>1550695099788400-19</unique-id>
+	<command>gedit %f</command>
+	<description>File Editor</description>
+	<patterns>*</patterns>
+	<text-files/>
+</action>
+<action>
+	<icon>archive-insert-directory</icon>
+	<name>List Directory</name>
+	<unique-id>1550753416900644-8</unique-id>
+	<command>ls -thalis %f | xargs -0 -e zenity --info --no-wrap --ellipsize --text</command>
+	<description>List Directory</description>
+	<patterns>*</patterns>
+	<directories/>
+</action>
+<action>
+	<icon>preferences-system-windows</icon>
+	<name>List Tree</name>
+	<unique-id>1550865692039662-36</unique-id>
+	<command>tree %f &gt;/tmp/tree &amp;&amp; zenity --text-info --auto-scroll --filename=/tmp/tree</command>
+	<description>List Tree</description>
+	<patterns>*</patterns>
+	<directories/>
+</action>
+<action>
+	<icon>eog</icon>
+	<name>File Stat</name>
+	<unique-id>1550753600310273-9</unique-id>
+	<command>stat %n | xargs -0 -e zenity --info --no-wrap --ellipsize --text</command>
+	<description>File Stat</description>
+	<patterns>*</patterns>
+	<audio-files/>
+	<image-files/>
+	<other-files/>
+	<text-files/>
+	<video-files/>
+</action>
+<action>
+	<icon>gnome-panel-notification-area</icon>
+	<name>File Type</name>
+	<unique-id>1550753663182901-12</unique-id>
+	<command>file %n | xargs -0 -e zenity --info --no-wrap --ellipsize --text</command>
+	<description>File Type</description>
+	<patterns>*</patterns>
+	<audio-files/>
+	<image-files/>
+	<other-files/>
+	<text-files/>
+	<video-files/>
+</action>
+<action>
+	<icon>baobab</icon>
+	<name>Usage</name>
+	<unique-id>1550754727877239-15</unique-id>
+	<command>du -h -s %f 2&gt;/dev/null | xargs -0 -e zenity --info --no-wrap --ellipsize --text</command>
+	<description>Usage</description>
+	<patterns>*</patterns>
+	<directories/>
+</action>
+<action>
+	<icon>applications-viewers</icon>
+	<name>Preview</name>
+	<unique-id>1550755452440617-22</unique-id>
+	<command>zenity --text-info --auto-scroll --filename=%n</command>
+	<description>Preview</description>
+	<patterns>*</patterns>
+	<other-files/>
+	<text-files/>
+</action>
+<action>
+	<icon>insert-text</icon>
+	<name>Find Text </name>
+	<unique-id>1550780064126789-6</unique-id>
+	<command>catfish --fulltext --hidden %f</command>
+	<description>Find Text Inside Folders</description>
+	<patterns>*</patterns>
+	<directories/>
+</action>
+<action>
+	<icon>insert-text</icon>
+	<name>Find Text</name>
+	<unique-id>1550771671092543-28</unique-id>
+	<command>find=$(zenity --entry) &amp;&amp; grep -i $find %n | xargs -0 -e zenity --info --no-wrap --ellipsize --text</command>
+	<description>Find Text Inside Files</description>
+	<patterns>*</patterns>
+	<other-files/>
+	<text-files/>
+</action>
+<action>
+	<icon>preferences-other</icon>
+	<name>Open Folders as (root)</name>
+	<unique-id>1550861017707714-7</unique-id>
+	<command>pkexec thunar %f</command>
+	<description></description>
+	<patterns>*</patterns>
+	<directories/>
+</action>
+<action>
+	<icon>utilities-terminal</icon>
+	<name>Open Terminal Here as (root)</name>
+	<unique-id>1550864419757225-34</unique-id>
+	<command>gnome-terminal --working-directory=%f -x bash -c &quot;sudo su&quot;</command>
+	<description>Open Terminal Here as (root)</description>
+	<patterns>*</patterns>
+	<directories/>
+</action>
+<action>
+	<icon>stock_folder-copy</icon>
+	<name>Copy To...</name>
+	<command>cp -r %F &quot;$(zenity --file-selection --directory)&quot;</command>
+	<description>Copy this item</description>
+	<patterns>*</patterns>
+	<startup-notify/>
+	<directories/>
+	<audio-files/>
+	<image-files/>
+	<other-files/>
+	<text-files/>
+	<video-files/>
+</action>
+<action>
+	<icon>stock_folder-move</icon>
+	<name>Move To...</name>
+	<command>mv %F &quot;$(zenity --file-selection --directory)&quot;</command>
+	<description>Move this item</description>
+	<patterns>*</patterns>
+	<startup-notify/>
+	<directories/>
+	<audio-files/>
+	<image-files/>
+	<other-files/>
+	<text-files/>
+	<video-files/>
+</action>
