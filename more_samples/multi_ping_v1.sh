@@ -1,6 +1,5 @@
 #!/bin/bash
 #Version:1.0
-#功能描述(Description):使用函数与&后台进程实现多进程ping测试.
 
 net="192.168.4"
 
