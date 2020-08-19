@@ -1,0 +1,104 @@
+DEBIAN + AD:
+
+Step  0: Configure NTP cliente. Sudo apt-get install ntp ntpdate and change file /etc/ntp.conf
+apt-get install ntp ntpdate
+change file config add ntp pool and server (file: /etc/ntp.conf)
+ntpq -p (view status)
+
+Step 1: Check resolving
+
+cat /etc/resolv.conf
+here should be some think like
+search ihb.local
+nameserver 10.100.0.5
+nameserver 172.16.100.4
+Obs.: If dhcp is working 100% with domain, this manual config is not need.
+
+ 
+Step 2: install software
+sudo apt-get install sssd realmd -y
+sudo apt-get install policykit-1
+sudo apt-get install sssd-tools sssd libnss-sss libpam-sss adcli
+sudo apt-get install packagekit
+
+Step 3: try to join
+realm join --user=hepta.alexsandro.f ihb.local
+password for administrator:
+
+Step 4: test join settings
+realm list 
+biopack.be 
+type: kerberos 
+realm-name: BIOPACK.BE 
+domain-name: biopack.be 
+configured: kerberos-member 
+server-software: active-directory 
+client-software: sssd 
+required-package: oddjob 
+required-package: oddjob-mkhomedir 
+required-package: sssd 
+required-package: adcli 
+required-package: samba-common-tools 
+login-formats: %U@biopack.be 
+login-policy: allow-realm-logins
+
+Step 5: AD
+if successfully the server should appear in ad
+
+Step 6: id testing
+id administrator 
+id: administrator: no such user
+id administrator@biopack.be 
+uid=1829600500...
+
+Step 7: change behaviour
+nano /etc/sssd/sssd.conf
+change
+use_fully_qualified_names = False 
+ad_gpo_access_control = permissive
+#Fallback you can change to what you wish
+fallback_homedir = /home/%u@%d
+#i use /home/%d@%u 
+on debian systems you need to create the domain directory your self 
+mkdir /home/YOUR_NETBIOS_NAME
+
+Step 8: Create groupAllowGroups linuxadmin
+Go to your ad and create a group give it some members.
+
+Step 9: Create File
+nano /etc/sudoers.d/sudoers 
+%linuxadmin	ALL=(ALL:ALL) ALL
+#replace LinuxAdmins with your own group you created in ad.
+
+Step 10: restart sssd
+systemctl restart sssd
+
+Step 11: ssh test
+ssh in yo your box
+ssh domainuser@localhost 
+#request root priveleges 
+sudo su 
+execute : whoami 
+this should return root
+
+Step 12: Domain Leave
+if you wish to leave domain execute:domain realm leave biopack.be
+
+The only other trick you might like to do is adding “session required pam_mkhomedir.so skel=/etc/skel/ umask=0022” to /etc/pam.d/common-session to automatically create homedirs. 
+
+Using SSH configuration
+To /etc/ssh/sshd_config, add a AllowGroups line:
+AllowGroups linuxadmin
+
+AllowGroups linuxadmin
+From the manpage:
+AllowGroups
+  
+Using pam_access
+Add lines to /etc/security/access.conf of the form:
+- : ALL EXCEPT (Domain) (Admin) : ALL
+There are plenty of comments in that file which document how to use it. man pam_access is quite bare, so most information would come from those comments. pam_access is more powerful in that it can control non-SSH logins as well (TTYs, GUI, etc.). This particular line, for example, should deny any user who does not have Domain or Admin as a group from logging in at all (unless other lines allow them).
+Both approaches are pretty flexible, and I don't know the pros and cons, so no recommendations.
+
+
+

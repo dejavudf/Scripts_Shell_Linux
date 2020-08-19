@@ -1,0 +1,24 @@
+# /etc/fstab: static file system information.
+#
+# Use 'blkid' to print the universally unique identifier for a
+# device; this may be used with UUID= as a more robust way to name devices
+# that works even if disks are added and removed. See fstab(5).
+#
+# <file system> <mount point>   <type>  <options>       <dump>  <pass>
+# / was on /dev/sda1 during installation
+UUID=71b44455-0366-4cbe-a0ff-a343fa928347 /               ext4    noatime,nodiratime,discard,errors=remount-ro 0       1
+# swap was on /dev/sda5 during installation
+#UUID=b3eae765-225f-4fb5-9b0b-80d4b026c50a none            swap    sw              0       0
+#disk for data archive
+#UUID=0785a0f1-64e6-47d0-8a0d-f7f47c25ed14	/data	ext4	noatime,nodiratime	0	0
+#disable var/log and var/tmp on disk and enable only on RAM
+none    /var/log/tomcat8        tmpfs   defaults,mode=0750,uid=112,gid=4,size=30M    0       0
+none    /var/log/mysql        tmpfs   defaults,mode=0750,uid=111,gid=4,size=30M    0       0
+none    /var/log/apache2        tmpfs   defaults,mode=0750,uid=0,gid=4,size=30M    0       0
+none	/var/log	tmpfs	defaults,noatime,size=30M	0	0
+none    /var/tmp        tmpfs   defaults,noatime,size=500M        0       0
+none    /tmp        tmpfs   defaults,noatime,size=1000M        0       0
+none	/var/spool	tmpfs	defaults,noatime,size=30M,mode=1777 0 0
+none	/opt/unetlab/tmp	tmpfs	defaults,noatime,size=100M,mode=0755	0	0
+none	/opt/unetlab/data/Logs/	tmpfs	defaults,noatime,size=30M,mode=0755,uid=33,gid=33	0	0
+

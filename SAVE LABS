@@ -1,0 +1,4 @@
+scp root@192.168.0.249:/root/NARBIK_LABS/LABS_F/* /home/alexsandro/Desktop/BACKUP_NARBIK_LABS/
+
+copy RUNning-config unix:/LABS_F/R1_F_DMVPN_LAB3.CFG
+

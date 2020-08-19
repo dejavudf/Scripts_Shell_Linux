@@ -1,0 +1,54 @@
+Cisco IOU:Connect IOU with real or external networks
+
+17th April 2011 By Greg Ferro Filed Under: Blog, IOU
+
+This is a reblog from the original article at Connect IOU with real networks or dynamips
+From Internetworkpro
+
+This guide provides explanations to a script called iou2net.pl (script is at the end of the article), which allows you to attach IOU instances to real network (interfaces). In its functionality, its similar to what the ioulive tool does. For more information about IOU or ioulive, ask your Cisco SE/AM that provided you with your copy of IOU, or check out the [IOU FAQ from evilrouters.net][3].
+
+Why another script that does nearly the same thing as ioulive? While playing around with IOU, i tried to come up with a way to attach IOU instances to dynamips directly. I managed to get this working for single instances, but came to the conclusion that its best to integrate such functionality in dynagen directly. Unfortunately, Im not a good programmer and have no experience with python, nor the time to dig through the dynagen sources and extend the code. This script is a byproduct of this work, where i tried to document the packet format that IOU uses to communicate between instances.
+Installation
+
+The program is written in perl and can be copied directly from the source listing (end of the article) to a file. Make the file executeable with
+
+chmod +x ./iou2net.pl
+
+Dependencies
+
+iou2net depends on some perl modules. Most of them should come with your default perl distribution. Best case, the extra installation of Net::Pcap should do the trick to satisfy dependencies. On Ubuntu and Debian systems, this is provided with the “libnet-pcap-perl” package. Of course, beside the perl package, you need libpcap too (not sure if -dev is required).
+
+sudo apt-get install libnet-pcap-perl libpcap0.8
+
+For systems that dont pack the perl module, use CPAN to install it:
+
+perl -MCPAN -e 'install Net::Pcap' 
+
+Now try to start the script, it should start without any module warnings, printing the help screen:
+
+./iou2net.pl
+
+Usage
+
+iou2net will forward frames between a IOU instance and a (real) network adapter. IOU needs a special mapping in its NETMAP file. The interface of the IOU instance you want to forward from has to be listed as a source entry, with a “@” suffix at the end. The destination of the mapping will be a pseudo IOU instance number, with a pseudo interface number. iou2net.pl will use this pseudo IOU instance ID to connect to the real IOU instance, and do its frame relaying.
+
+Example NETMAP file:
+
+10:1/1              11:1/0
+10:1/2              12:1/0
+10:1/0@iou-test             20:0/0@iou-test
+
+The first two mappings are normal connections between IOU instances at the same host (R10, 1/1 R11, 1/0 and R10, 1/2 R12, 1/0). The last one connects interface 1/0 of R10 to pseudo router (instance) 20, interface 0/0.
+
+You can choose any ID (<1024), as long as its not used by any real IOU instance. Specify this ID with the option “-p” when launching the script. Dont use this arbitrary ID for anything else in your mappings/topology. iou2net will need to read through this NETMAP file, to determine the correct mapping. By default, it looks in the current directory for the file NETMAP. If you want to use a file in a different directory (and/or with a different name), use the “-n” option. Last, you must specify the network interface where the frames should be forwarded to/received from. iou2net.pl will put this interface into promiscuous mode, therefore you must have superuser privileges when starting the script.
+
+$ sudo ./iou2net.pl -i eth0 -p 20
+Forwarding frames between interface eth0 and IOU instance 10, int 1/0 -  press ^C to exit
+
+Limitations
+
+    This is only tested with Linux so far. Im sure it will run at other modern Unices, too. From perl perspective, porting this to windows is a possible, yet a pointless approach, because there is no IO_W_ (afaik).
+    For the NETMAP mapping line that is related with iou2net.pl pseudo ID, you must use id:x/y interface notation and not the “compressed” id:z format. Its just a matter of implementation in the script, im too lazy to add this.
+    There is not much sanity checking. The last occurence of a line that contains the pseudo ID as a destination is used, no matter how many other mappings with this ID exist before in the NETMAP file. These are typos anyway (see next limitation).
+    A single instance of this script will handle one IOU < -> network mapping. If you, for example, have multiple NICs in your systems and therefore want multiple IOU interfaces to be forwarded, you must launch multiple instances of the script. Every mapping must get a unique pseudo ID as the destination, and every instance of the script must be started by adding this unique ID. Example: $ cat NETMAP 10:1/0@iou-test 20:0/0@iou-test 10:1/1@iou-test 21:0/0@iou-test 11:1/0@iou-test 22:0/0@iou-test […]$ sudo ./iou2net.pl -i eth0 -p 20 & […] $ sudo ./iou2net.pl -i eth1 -p 21 & […] $ sudo ./iou2net.pl -i eth2 -p 22 & […]
+
