@@ -1,0 +1,7 @@
+
+alexsandro@alex-studio:~$ cat /etc/samba/smb.conf 
+[global]
+client min protocol = NT1
+
+alexsandro@alex-studio:~$ cat /etc/sysctl.conf | grep -i swap
+vm.swappiness = 1
