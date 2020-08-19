@@ -32,4 +32,4 @@ for ((i = MAX_NO; i >= 1; i--)); do
 	echo ""
 done
 
-echo -e "\n\n\t\t\t Whenever you need help, Tecmint.com is always there"
+

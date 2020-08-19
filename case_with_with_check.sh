@@ -1,9 +1,6 @@
 #!/bin/bash
 
-# This is a startup script for sleep-walking-server
-#
-# Be sure to copy the sleep-walking-server file into /tmp and
-# "chmod 755 /tmpsleep-walking-server"
+
 
 case "$1" in
   start)
