@@ -1,60 +1,3 @@
-files.
-
-
-Bash is baroque. Bash is brittle. Bash is indispensable.
-
-Bash was not designed.
-
-It's not fair to say that bash has evolved either: it retains and utilizes all of its vestigial appendages.
-
-Read on for my brief example-driven guide to bash, including coverage of:
-
-variables and arrays;
-operations on variables;
-subtle quirks like * versus @;
-arithmetic;
-strings;
-scope;
-files and redirection;
-pipes;
-processes;
-patterns;
-control structures;
-pitfalls.
-I've tried to make this a one-shot introduction, covering all of the common, and a good fragment of the advanced.
-
-If you're new to Unix and/or shell programming, I advise starting with:
-
-A survival guide for Unix; and/or
-Settling into Unix.
-What is bash?
-Bash is an interactive shell:
-
-
-You type in commands.
-
-Bash executes them.
-
-Unix users spend a lot of time manipulating files at the shell.
-
-As a shell, it is directly available via the terminal in both Mac OS X (Applications > Utilities) and Linux/Unix.
-
-At the same time, bash is also a scripting language:
-
-
-Bash scripts can automate routine or otherwise arduous tasks involved in systems administration.
-
-Why use bash?
-Here are example tasks for which you might use bash:
-
-Orchestrating system start-up/shutdown tasks.
-Automatically renaming a collection of files.
-Finding all duplicate mp3s on a hard drive.
-Orchestrating a suite of tools for cracking a password database.
-Finding weasel words in your writing.
-Implementing a relational database out of text files.
-Simplifying configuration and reconfiguration of software.
-Bash as a scripting language
 To create a bash script, you place #!/bin/bash at the top of the file.
 
 Then, change the permissions on the file to make it executable:
@@ -787,28 +730,4 @@ factered () {
 
   echo $result
 }
-More resources
-Learn Perl by experiment
-A short introduction to make
-SSH hacks
-Standalone lexers with lex: synopsis, examples, and pitfalls
-Sculpting text with regex, grep, sed and awk
-Relational shell programming
-Settling into Unix
-A survival guide for Unix beginners
-Console productivity hack: Exploiting task frequency
-HOWTO: Word, Excel and PowerPoint without MS Office
-Tips, tricks and tools for Linux and Unix
-Wooledge Bash Guide
-Advanced Bash Scripting Guide
-Unix Power Tools:
 
-The UNIX and Linux System Administration Handbook:
-
-Classic Shell Scripting:
-
-[article index] [email me] [@mattmight] [rss]
-Latest: HOWTO: Get tenure
-Next: Learn Perl by experiment
-Prev: A short introduction to make
-Rand: The CRAPL: An open source license for academia
