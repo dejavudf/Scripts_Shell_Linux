@@ -1,10 +1,3 @@
-
-Bash scripting Tutorial
-
-    admin 
-    Programming & Scripting 
-    02 June 2020 
-
 Contents
 
         1. Hello World Bash Shell Script
@@ -78,16 +71,6 @@ Simple Backup bash shell script
 
 #!/bin/bash
 tar -czf myhome_directory.tar.gz /home/linuxconfig
-
-
-
-
-
-
-Simple Backup bash script
-SUBSCRIBE TO NEWSLETTER
-Subscribe to Linux Career NEWSLETTER and receive latest Linux news, jobs, career advice and tutorials.
-Variables
 
 In this example we declare simple bash variable and print it on the screen ( stdout ) with echo command.
 
@@ -193,7 +176,6 @@ for a in `seq 1 10`; do
     sleep 1;
 done
 echo "Exit Bash Trap Example!!!" 
-
 	
 Arrays
 Declare simple bash array
@@ -306,8 +288,7 @@ fi
 done 
 
 Nested Bash if else statement
-SUBSCRIBE TO NEWSLETTER
-Subscribe to Linux Career NEWSLETTER and receive latest Linux news, jobs, career advice and tutorials.
+
 Bash Comparisons
 Arithmetic Comparisons
 -lt 	<
@@ -665,7 +646,6 @@ echo "9 % 4 =" $MODULUS
 let POWEROFTWO=2**2
 echo "2 ^ 2 =" $POWEROFTWO
 
-
 echo '### Bash Arithmetic Expansion ###'
 # There are two formats for arithmetic expansion: $[ expression ] 
 # and $(( expression #)) its your choice which you use
@@ -676,7 +656,6 @@ echo 4 x 6 = $((3 * 2))
 echo 6 / 3 = $((6 / 3))
 echo 8 % 7 = $((8 % 7))
 echo 2 ^ 8 = $[ 2 ** 8 ]
-
 
 echo '### Declare ###'
 
@@ -819,7 +798,6 @@ $ cat STDERR_STDOUT
 ls: cannot access file2: No such file or directory
 file1
 
-    Prev
-    Next
+ 
 
 
