@@ -1,8 +1,8 @@
 ​
-Use the following in your sources.list:
+#Use the following in your sources.list:
 deb http://archive.debian.org/debian squeeze main
 deb http://archive.debian.org/debian squeeze-lts main
-The second line will fail with an "expired" type message, so you also need to add the following in /etc/apt/apt.conf (create it if it doesn't already exist):
+#The second line will fail with an "expired" type message, so you also need to add the following in /etc/apt/apt.conf (create it if it doesn't already exist):
 Acquire::Check-Valid-Until false;
 sudo apt-get install libc6:i386
 sudo apt-get install lib32z1
