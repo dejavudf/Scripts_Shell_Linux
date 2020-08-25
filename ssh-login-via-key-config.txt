@@ -1,0 +1,14 @@
+Ssh login via key:
+
+Step 1 (client). Command: ssh-keygen. Do not use passphrase/password. choose 1024 bits. (generate key files).   
+
+
+Step 2 (client). Command: ssh-add keyfile (copy keyfile to system id). Do not use keyfile.pub, use only keyfile without extension.
+
+
+Step 3 (client). Command: ssh-copy-id user@ip_hostname (copy system id to remote server using remote server crendentials)
+
+
+Step 4. Try to login using user@ip_hostname
+
+Or use sshpass as alternative.
