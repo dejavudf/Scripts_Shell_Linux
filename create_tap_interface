@@ -1,0 +1,12 @@
+       1.
+       install uml-utils (sudo apt-get install uml-utilities)
+       
+       2.
+       sudo tunctl -t tap0
+       
+       3.
+       sudo ifconfig tap0 192.168.111.1 255.255.255.0 up
+       
+       4.
+       tunctl -d tap0
+       Set 'tap0' nonpersistent
