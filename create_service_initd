@@ -1,0 +1,12 @@
+#!/bin/bash
+### BEGIN INIT INFO
+# Provides:        nameofservice
+# Required-Start:  
+# Required-Stop:   
+# Default-Start:   2 
+# Default-Stop: 
+# Short-Description: usage of service
+
+commands
+commands
+commands
