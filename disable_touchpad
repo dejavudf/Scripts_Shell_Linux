@@ -1,0 +1,2 @@
+alias padoff='synclient TouchpadOff=1'
+alias padon='synclient TouchpadOff=0'
