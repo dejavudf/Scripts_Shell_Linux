@@ -1,0 +1,3 @@
+Host: mkfifo /mypipe -m 777
+
+vm: \\.\pipe\mypipe
