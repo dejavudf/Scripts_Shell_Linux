@@ -1,5 +1,8 @@
 
 1. Create Local: mkfifo /mypipe -m 777
-2. Create Remote (server) : sudo nc -lvt 8888 < /mypipe - (Client): Telnet ip 8888
-3. Server remote: command >/mypipe
+2. Create Remote (server) : sudo nc -lvt 8888 < /mypipe 
+3. Open a new shell (server): bash | tee /mypipe
+4. Open telnet (Client): Telnet ip 8888
+
+
 
