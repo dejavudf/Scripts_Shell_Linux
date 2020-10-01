@@ -8,5 +8,8 @@
        sudo ifconfig tap0 192.168.111.1 255.255.255.0 up
        
        4.
+       route add default gw 192.168.111.254 metric 1000
+       
+       5.
        tunctl -d tap0
        Set 'tap0' nonpersistent
