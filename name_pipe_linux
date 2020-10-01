@@ -1,3 +1,5 @@
-Host: mkfifo /mypipe -m 777
 
-vm: \\.\pipe\mypipe
+1. Create Local: mkfifo /mypipe -m 777
+2. Create Remote (server) : sudo nc -lvt 8888 < /mypipe - (Client): Telnet ip 8888
+3. Server remote: command >/mypipe
+
