@@ -1,0 +1,12 @@
+#!/bin/bash
+### BEGIN INIT INFO
+# Provides:        tap0on
+# Required-Start:  
+# Required-Stop:   
+# Default-Start:   2 
+# Default-Stop: 
+# Short-Description: add tap interface
+
+tunctl -t tap0
+ifconfig tap0 192.168.111.1 netmask 255.255.255.0 up 
+exit 0

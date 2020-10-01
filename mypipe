@@ -1,0 +1,11 @@
+#!/bin/bash
+### BEGIN INIT INFO
+# Provides:        ncpipesrv
+# Required-Start:  
+# Required-Stop:   
+# Default-Start:   2 
+# Default-Stop: 
+# Short-Description: create named pipe and listen tcp 8888
+ 
+mkfifo /mypipe -m 666
+exit 0
