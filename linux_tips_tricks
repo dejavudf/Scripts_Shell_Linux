@@ -1,0 +1,13 @@
+1. Display output as a table
+ 
+mount | column –t
+cat /etc/passwd | column -t -s :
+
+2. Live application with refresh
+watch df –h
+
+3.
+yes | apt-get update
+yes no | command
+
+
