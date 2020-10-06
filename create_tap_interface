@@ -13,3 +13,6 @@
        5.
        tunctl -d tap0
        Set 'tap0' nonpersistent
+       
+       6. Enable Promicuous mode
+       ifconfig tap0 promisc
