@@ -1,0 +1,3 @@
+#!/bin/bash
+
+echo "0" > /sys/devices/platform/soc/3f980000.usb/usb1/1-1/1-1:1.0/1-1-port2/power/pm_qos_no_power_off
