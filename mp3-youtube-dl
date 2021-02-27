@@ -1,0 +1,4 @@
+#!/bin/bash
+echo "Convertendo Video em MP3. Aguarde..."
+./youtube-dl --ignore-errors --extract-audio --audio-format mp3 $1
+echo "Conversão concluída."
