@@ -1,0 +1,26 @@
+# Put your custom commands here that should be executed once
+# the system init finished. By default this file does nothing.
+
+#rasp usb config
+echo "0" > /sys/devices/platform/soc/3f980000.usb/usb1/1-1/1-1:1.0/1-1-port2/power/pm_qos_no_power_off
+echo "0" > /sys/devices/platform/soc/3f980000.usb/usb1/1-1/1-1:1.0/1-1-port3/power/pm_qos_no_power_off
+echo "0" > /sys/devices/platform/soc/3f980000.usb/usb1/1-1/1-1:1.0/1-1-port4/power/pm_qos_no_power_off
+echo "0" > /sys/devices/platform/soc/3f980000.usb/usb1/1-1/1-1:1.0/1-1-port5/power/pm_qos_no_power_off
+
+#proxy arp eth0 config
+echo "1" >/proc/sys/net/ipv4/conf/eth0/proxy_arp
+
+#occtl config
+touch /var/run/occtl.socket
+touch /var/run/ocserv-socket
+chown ocserv /var/run/occtl.socket
+chmod g+w /var/run/occtl.socket
+chown ocserv /var/run/ocserv-socket
+chmod g+w /var/run/ocserv-socket
+sleep 30
+
+#start ddns scripts
+/usr/lib/ddns/dynamic_dns_functions.sh start_daemon_for_all_ddns_sections lan
+#/usr/lib/ddns/dynamic_dns_updater.sh myddns_ipv4 0 &
+
+exit 0
