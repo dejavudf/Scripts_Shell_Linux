@@ -1,0 +1,42 @@
+Tutorial - Habilite rc.local
+
+No console do Linux, use os seguintes comandos para criar o arquivo rc.local e altere sua permissão para se tornar um arquivo executável
+
+# touch /etc/rc.local
+# chmod 755 /etc/rc.local
+
+Depois de criar o arquivo rc.local, precisamos criar o arquivo de inicialização da configuração do serviço rc.local.
+
+# vi /etc/systemd/system/rc-local.service
+
+[Unit] 
+Description=/etc/rc.local Compatibility
+ConditionPathExists=/etc/rc.local
+
+[Service] 
+Type=forking
+ExecStart=/etc/rc.local start
+TimeoutSec=0
+StandardOutput=tty
+RemainAfterExit=yes
+SysVStartPriority=99
+
+[Install] 
+WantedBy=multi-user.target
+
+Agora, vamos habilitar o serviço rc.local.
+
+# systemctl enable rc-local
+
+Como último passo, vamos editar o arquivo rc.local e adicionar alguns comandos apenas para garantir que nosso teste funcione.
+
+# vi /etc/rc.local
+
+#!/bin/bash
+echo "TEST OK" > /tmp/rc.local.status
+
+Reinicie o computador e verifique se o arquivo /tmp/rc.local.status foi criado pelo serviço rc.local.
+
+# reboot
+# cat /tmp/rc.local.status
+
